@@ -10,6 +10,7 @@
   <nav>
     <div class="nav-container">
       <a href="#" class="logo">Cinema E-Booking</a>
+      <!--      TODO: add back to home button-->
       <div class="nav-dropdown">
         <button class="nav-dropdown-btn">
           <span class="nav-dropdown-line"></span>
@@ -26,23 +27,27 @@
 
   <div class="container">
     <h1>Cinema E-Booking Login</h1>
-    <form>
+    <form method="post" role="form" th:action="/login">
       <label for="username">Username or Email <span class="required">*</span>:</label>
-      <input type="text" id="username" name="username" required>
+      <input type="text" id="username" name="username" required placeholder="Enter email address"/>
 
       <label for="password">Password <span class="required">*</span>:</label>
-      <input type="password" id="password" name="password" required>
+      <input type="password" id="password" name="password" required placeholder="Enter password"/>
 
+      <!-- TODO: add remember me functionality for bonus -->
       <div class="login-opt">
         <label for="remember">Remember me:</label>
         <input type="checkbox" id="remember" name="remember">
       </div>
 
       <p><span class="required">*</span> Required fields</p>
-      
+      <div th:if="${param.error}">
+        <div class="warning">Invalid Email or Password</div>
+      </div>
       <button href="home5.html" type="submit">Login</button>
     </form>
-<a href="forgotpw.html" class="forgot-password">Forgot Password?</a>
+    <a href="/login/forgotpass" class="forgot-password">Forgot Password?</a>
+    <a href="/register" class="forgot-password">No account? Register here</a>
   </div>
 </body>
 </html>

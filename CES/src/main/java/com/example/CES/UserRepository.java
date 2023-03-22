@@ -7,6 +7,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
-    //List<Blog> findByTitleContainingOrContentContaining(String text, String textAgain);
+    User findByEmail(String email);
 }

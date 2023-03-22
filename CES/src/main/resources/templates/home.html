@@ -5,18 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinema E-Booking System</title>
-    <link rel="stylesheet" th:href="@{css/home.css}">
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Group C7: Cinema E-Booking System</h1>
-        <button id="openbtn" onclick="openPanel()">☰</button>
-    </header>
-    <div id="accountpanel">
-        <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+<nav>
+    <div class="nav-container">
+        <a href="#" class="logo">Cinema E-Booking</a>
+        <!--      TODO: add back to home button-->
+        <div class="nav-dropdown">
+            <button class="nav-dropdown-btn">
+                <span class="nav-dropdown-line"></span>
+                <span class="nav-dropdown-line"></span>
+                <span class="nav-dropdown-line"></span>
+            </button>
+            <div class="nav-dropdown-content">
+                <div sec:authorize="isAuthenticated()">
+                    <a href="/logout">Login</a>
+                    <a href="/account">Register</a>
+                </div>
+                <div sec:authorize="isAnonymous()">
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
+            </div>
+        </div>
     </div>
+</nav>
 
     <div id="searchopts">
         <div class="filter">
@@ -51,14 +65,5 @@
             <button>Book Tickets</button>
         </div>
     </div>
-
-    <script>
-    function openPanel() {
-        document.getElementById("accountpanel").style.width = "100px";
-    }
-    function closePanel() {
-        document.getElementById("accountpanel").style.width = "0";
-    }
-    </script>
 </body>
 </html>       

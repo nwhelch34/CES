@@ -31,6 +31,13 @@ public class CESController {
         return model;
     }
 
+    @RequestMapping("/login/forgotpass")
+    public ModelAndView forgotpw(ModelAndView model) {
+        model.setViewName("forgotpw");
+
+        return model;
+    }
+
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
