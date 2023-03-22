@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema E-Booking Login</title>
+  <link rel="stylesheet" th:href="@{css/styles.css}">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">Cinema E-Booking</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">
+          <span class="nav-dropdown-line"></span>
+          <span class="nav-dropdown-line"></span>
+          <span class="nav-dropdown-line"></span>
+        </button>
+        <div class="nav-dropdown-content">
+          <a href="#" class="active">Login</a>
+          <a href="/register">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Cinema E-Booking Login</h1>
+    <form>
+      <label for="username">Username or Email <span class="required">*</span>:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password <span class="required">*</span>:</label>
+      <input type="password" id="password" name="password" required>
+
+      <div class="login-opt">
+        <label for="remember">Remember me:</label>
+        <input type="checkbox" id="remember" name="remember">
+      </div>
+
+      <p><span class="required">*</span> Required fields</p>
+      
+      <button href="home5.html" type="submit">Login</button>
+    </form>
+<a href="forgotpw.html" class="forgot-password">Forgot Password?</a>
+  </div>
+</body>
+</html>

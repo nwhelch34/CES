@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema E-Booking System</title>
+    <link rel="stylesheet" th:href="@{css/home.css}">
+</head>
+<body>
+    <header>
+        <h1>Group C7: Cinema E-Booking System</h1>
+        <button id="openbtn" onclick="openPanel()">☰</button>
+    </header>
+    <div id="accountpanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    </div>
+
+    <div id="searchopts">
+        <div class="filter">
+            <select>
+                <option value="0">Filter Listings</option>
+                <option value="1">Now Playing</option>
+                <option value="2">Coming Soon</option>
+            </select>
+            <select>
+                <option value="0">Filter by Age Category</option>
+                <option value="1">Child</option>
+                <option value="2">Adult</option>
+                <option value="2">Senior</option>
+            </select>
+        </div>
+        <form><input type="text" placeholder="Search by title..."></form>
+        <form><input type="text" placeholder="Search by date (MM/DD)..." pattern="[0-9]{2}/[0-9]{2}"></form>
+    </div>
+    <div id="movielist">
+        <div class="movie">
+            <iframe width="480" height="270" src="https://www.youtube.com/embed/TcMBFSGVi1c"></iframe>
+            <div class="info">
+                <h3>Avengers: Endgame</h3>
+                <p>Showtimes:</p>
+                <ul>
+                    <li>10:00 am Friday, February 17th</li>
+                    <li>7:00 pm Friday, February 17th</li>
+                    <li>10:00 pm Friday, February 17th</li>
+                </ul>
+                <img class=rating src="./images/pg-13 rating.svg" alt="PG-13: Some material may be inappropriate for children under the age of 13">
+            </div>
+            <button>Book Tickets</button>
+        </div>
+    </div>
+
+    <script>
+    function openPanel() {
+        document.getElementById("accountpanel").style.width = "100px";
+    }
+    function closePanel() {
+        document.getElementById("accountpanel").style.width = "0";
+    }
+    </script>
+</body>
+</html>       

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Ticket Booking</title>
+    <link rel="stylesheet" type="text/css" href="css/booking.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Movie Ticket Booking</h1>
+      <form>
+        <div class="form-group">
+          <label for="movie-select">Select a Time:</label>
+          <select id="movie-select">
+            <option value="" selected disabled>Select a Time</option>
+            <option value="avengers">11:30AM - 1:30PM</option>
+            <option value="avengers">4:30PM - 6:30PM</option>
+            <option value="avengers">9:30PM - 11:30PM</option>
+            <option value="avengers">11:00PM - 1:00AM</option>
+          </select>
+          <div class="error-message" id="movie-error">
+            Please select a movie
+          </div>
+        </div>
+        <div class="form-group ticket-input">
+          <label for="adult-ticket">Adult:</label>
+          <div>
+            <button class="minus-btn" type="button" name="button">-</button>
+            <input
+              type="text"
+              class="ticket-count"
+              name="adult-ticket"
+              value="0"
+              disabled
+            />
+            <button class="plus-btn" type="button" name="button">+</button>
+          </div>
+          <div class="error-message" id="adult-ticket-error">
+            Please enter a valid number of tickets
+          </div>
+        </div>
+        <div class="form-group ticket-input">
+          <label for="child-ticket">Child:</label>
+          <div>
+            <button class="minus-btn" type="button" name="button">-</button>
+            <input
+              type="text"
+              class="ticket-count"
+              name="child-ticket"
+              value="0"
+              disabled
+            />
+            <button class="plus-btn" type="button" name="button">+</button>
+          </div>
+          <div class="error-message" id="child-ticket-error">
+            Please enter a valid number of tickets
+          </div>
+        </div>
+        <div class="form-group ticket-input">
+          <label for="senior-ticket">Senior:</label>
+          <div>
+            <button class="minus-btn" type="button" name="button">-</button>
+            <input
+              type="text"
+              class="ticket-count"
+              name="senior-ticket"
+              value="0"
+              disabled
+            />
+            <button class="plus-btn" type="button" name="button">+</button>
+          </div>
+          <div class="error-message" id="senior-ticket-error">
+            Please enter a valid number of tickets
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="total-amount">Total Amount:</label>
+          <input type="text" class="total-amount" id="total-amount" readonly />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="confirm-btn" disabled>Confirm</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

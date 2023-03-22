@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinema E-Booking Registration</title>
+  <link rel="stylesheet" th:href="@{css/styles.css}">
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">Cinema E-Booking</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">
+          <span class="nav-dropdown-line"></span>
+          <span class="nav-dropdown-line"></span>
+          <span class="nav-dropdown-line"></span>
+        </button>
+        <div class="nav-dropdown-content">
+          <a href="/login">Login</a>
+          <a href="#" class="active">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Cinema E-Booking Registration</h1>
+    <form method="post" th:action="@{/process_register}"
+          th:object="${user}">
+
+      <label for="firstName">First Name <span class="required">*</span>:</label>
+      <input type="text" th:field="*{firstName}" id="firstName" name="firstName" required/>
+
+      <label for="lastName">Last Name <span class="required">*</span>:</label>
+      <input type="text" th:field="*{lastName}" id="lastName" name="last  Name" required/>
+
+      <label for="email">Email <span class="required">*</span>:</label>
+      <input type="email" th:field="*{email}" id="email" name="email" required/>
+
+      <label for="password">Password <span class="required">*</span>:</label>
+      <input type="password" th:field="*{password}" id="password" name="password" required>
+
+      <label for="confirm-password">Confirm Password <span class="required">*</span>:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+
+      <label for="phone">Phone:</label>
+      <input type="tel" th:field="*{phoneNumber}" id="phone" name="phone">
+
+
+      <div class="promo-opt">
+<!--        <input type="checkbox" id="promo" name="promo" th>-->
+        <input type="hidden" name="isPresent" value="0">
+        <input type="checkbox" name="isPresent" id="isPresent" th:value="1">
+        <label for="isPresent">     Sign me up for e-cinema booking promotions!</label>
+      </div>
+
+
+      <p><span class="required">*</span> Required fields</p>
+
+      <label for="card-type">Card Type:</label>
+      <select id="card-type" name="card-type">
+        <option value="">--Please select--</option>
+        <option value="visa">Visa</option>
+        <option value="mastercard">Mastercard</option>
+        <option value="amex">American Express</option>
+        <option value="discover">Discover</option>
+      </select>
+
+      <label for="card-number">Card Number:</label>
+      <input type="text" id="card-number" name="card-number">
+
+      <label for="expiration-date">Expiration Date:</label>
+      <input type="text" id="expiration-date" name="expiration-date">
+        <div th:object="${address}">
+          <label for="streetNumber">Street Number:</label>
+          <input type="text"  th:field="*{streetNumber}"id="streetNumber" name="streetNumber">
+
+          <label for="streetName">Street Name:</label>
+          <input type="text" th:field="*{streetName}" id="streetName" name="streetName">
+
+          <label for="city">City:</label>
+          <input type="text" th:field="*{city}" id="city" name="city">
+
+          <label for="state">State:</label>
+          <input type="text" th:field="*{state}" id="state" name="state">
+
+          <label for="zip-code">Zip Code:</label>
+          <input type="text" th:field="*{zipCode}" id="zip-code" name="zip-code">
+        </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movie Ticket Checkout</title>
+    <link rel="stylesheet" type="text/css" href="css/checkout.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <h1>Checkout</h1>
+      <form>
+        <h2>Payment Information</h2>
+        <div class="form-group">
+          <label for="card-number">Card Number:</label>
+          <input type="text" id="card-number" name="card-number" required />
+        </div>
+        <div class="form-group">
+          <label for="card-expiry">Expiry Date:</label>
+          <input type="text" id="card-expiry" name="card-expiry" required />
+        </div>
+        <div class="form-group">
+          <label for="card-cvc">CVC:</label>
+          <input type="text" id="card-cvc" name="card-cvc" required />
+        </div>
+        <div class="form-group">
+          <label for="name-on-card">Name on Card:</label>
+          <input type="text" id="name-on-card" name="name-on-card" required />
+        </div>
+        <h2>Promotions/Coupons</h2>
+        <div class="form-group">
+          <label for="promo-code">Promo Code:</label>
+          <input type="text" id="promo-code" name="promo-code" />
+        </div>
+        <h2>Order Summary</h2>
+        <div class="form-group">
+          <label for="movie-title">Movie Title:</label>
+          <input
+            type="text"
+            id="movie-title"
+            name="movie-title"
+            value="Avengers"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="adult-ticket-price">Adult Ticket Price:</label>
+          <input
+            type="text"
+            id="adult-ticket-price"
+            name="adult-ticket-price"
+            value="$10"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="child-ticket-price">Child Ticket Price:</label>
+          <input
+            type="text"
+            id="child-ticket-price"
+            name="child-ticket-price"
+            value="$8"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="senior-ticket-price">Senior Ticket Price:</label>
+          <input
+            type="text"
+            id="senior-ticket-price"
+            name="senior-ticket-price"
+            value="$9"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="adult-ticket-count">Adult Ticket Count:</label>
+          <input
+            type="text"
+            id="adult-ticket-count"
+            name="adult-ticket-count"
+            value="0"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="child-ticket-count">Child Ticket Count:</label>
+          <input
+            type="text"
+            id="child-ticket-count"
+            name="child-ticket-count"
+            value="0"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="senior-ticket-count">Senior Ticket Count:</label>
+          <input
+            type="text"
+            id="senior-ticket-count"
+            name="senior-ticket-count"
+            value="0"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="subtotal">Subtotal:</label>
+          <input
+            type="text"
+            id="subtotal"
+            name="subtotal"
+            value="$0.00"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="tax">Tax (10%):</label>
+          <input type="text" id="tax" name="tax" value="$0.00" readonly />
+        </div>
+        <div class="form-group">
+          <label for="total-amount">Total Amount:</label>
+          <input
+            type="text"
+            id="total-amount"
+            name="total-amount"
+            value="$0.00"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="checkout-btn">Checkout</button>
+          <button type="button" class="cancel-btn">Cancel</button>
+          <button type="button" class="back-btn">Go back/Keep shopping</button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <footer>
+    <p>&copy; 2023 C7 Cinema E-Booking System. All rights reserved.</p>
+  </footer>
+</html>
