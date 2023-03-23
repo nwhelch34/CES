@@ -10,11 +10,8 @@ public class Address {
     @Column(name = "AddressID")
     private int id;
 
-    @Column(name = "streetNumber")
-    private int streetNumber;
-
-    @Column(name = "streetName")
-    private String streetName;
+    @Column(name = "street_name")
+    private String street;
 
     @Column(name="city")
     private String city;
@@ -22,7 +19,7 @@ public class Address {
     @Column(name="state", length=2)
     private String state;
 
-    @Column(name="zipCode", length=5)
+    @Column(name="zip_code", length=5)
     private int zipCode;
 
 
@@ -30,20 +27,12 @@ public class Address {
         return id;
     }
 
-    public int getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
     public String getStreetName() {
-        return streetName;
+        return street;
     }
 
     public void setStreetName(String streetName) {
-        this.streetName = streetName;
+        this.street = streetName;
     }
 
     public String getCity() {

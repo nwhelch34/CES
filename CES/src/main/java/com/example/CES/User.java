@@ -2,6 +2,9 @@ package com.example.CES;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table (name = "Users")
 public class User {
@@ -27,7 +30,6 @@ public class User {
 
     @Column(name = "enrolled_promotions")
     private int enrolledPromotions;
-
 
 
     @OneToOne(fetch= FetchType.LAZY)
@@ -99,7 +101,9 @@ public class User {
         return address;
     }
 
+    public void setAddress(Address address) { this.address = address; }
 
+/*
     public UserTypes getUserTypeID() {
         return UserTypeID;
     }
@@ -112,5 +116,16 @@ public class User {
     }
     public void setUserStatusID(UserStatus userStatusID) {
         UserStatusID = userStatusID;
-    }
+    }*/
+@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+@JoinTable(
+        name="UsersRoles",
+        joinColumns={@JoinColumn(name="UserID", referencedColumnName="UserID")},
+        inverseJoinColumns={@JoinColumn(name="RoleID", referencedColumnName="RoleID")})
+
+private List<Role> roles = new ArrayList<>();
+
+    public void setRoles(List<Role> roles) { this.roles = roles; }
+
+    public List<Role> getRoles() { return roles; }
 }

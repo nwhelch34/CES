@@ -1,64 +1,162 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinema E-Booking System</title>
-    <link rel="stylesheet" th:href="@{css/home.css}">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 0px;
+        }
+
+        header {
+            color: #0038d2;
+            padding: 15px;
+            margin: 0px;
+            border-bottom: 5px solid #4a7bff;
+            font-size: 12px;
+            display: flex;
+        }
+
+        #accountpanel  {
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            height: 100px;
+            top: 2px;
+            right: 2px;
+            background-color: #0038d2;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #accountpanel a {
+            padding: 8px 8px 8px 8px;
+            text-decoration: none;
+            font-size: 15px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #accountpanel a:hover {
+            color: lightgray;
+        }
+
+        #accountpanel .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+
+        #openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #4a7bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            margin-left: auto;
+        }
+
+        #openbtn:hover {
+            background-color:#444;
+        }
+
+        #searchopts {
+            display: flex;
+            margin: 10px;
+        }
+
+        #searchopts > form {
+            padding-left: 5px;
+        }
+
+        .movie {
+            border: 1px solid gray;
+            display: flex;
+            margin: 50px;
+            width: 900px;
+        }
+
+        .info {
+            padding: 0 10px 0 10px;
+        }
+
+        .movie img {
+            height: 80px;
+        }
+
+        .movie button {
+            margin-left: auto;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Group C7: Cinema E-Booking System</h1>
-        <button id="openbtn" onclick="openPanel()">☰</button>
-    </header>
-    <div id="accountpanel">
-        <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+<header>
+    <h1>Group C7: Cinema E-Booking System</h1>
+    <button id="openbtn" onclick="openPanel()">☰</button>
+</header>
+<div id="accountpanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+    <div sec:authorize="isAuthenticated()">
+        <a href="/logout">Logout</a>
+        <a href="/editprofile">Edit Profile</a></div>
+    <div sec:authorize="isAnonymous()">
         <a href="/login">Login</a>
-        <a href="/register">Register</a>
-    </div>
+        <a href="/register">Register</a></div>
+</div>
+</div>
 
-    <div id="searchopts">
-        <div class="filter">
-            <select>
-                <option value="0">Filter Listings</option>
-                <option value="1">Now Playing</option>
-                <option value="2">Coming Soon</option>
-            </select>
-            <select>
-                <option value="0">Filter by Age Category</option>
-                <option value="1">Child</option>
-                <option value="2">Adult</option>
-                <option value="2">Senior</option>
-            </select>
-        </div>
-        <form><input type="text" placeholder="Search by title..."></form>
-        <form><input type="text" placeholder="Search by date (MM/DD)..." pattern="[0-9]{2}/[0-9]{2}"></form>
-    </div>
-    <div id="movielist">
-        <div class="movie">
-            <iframe width="480" height="270" src="https://www.youtube.com/embed/TcMBFSGVi1c"></iframe>
-            <div class="info">
-                <h3>Avengers: Endgame</h3>
-                <p>Showtimes:</p>
-                <ul>
-                    <li>10:00 am Friday, February 17th</li>
-                    <li>7:00 pm Friday, February 17th</li>
-                    <li>10:00 pm Friday, February 17th</li>
-                </ul>
-                <img class=rating src="./images/pg-13 rating.svg" alt="PG-13: Some material may be inappropriate for children under the age of 13">
-            </div>
-            <button>Book Tickets</button>
-        </div>
-    </div>
 
-    <script>
+
+<div id="searchopts">
+    <div class="filter">
+        <select>
+            <option value="0">Filter Listings</option>
+            <option value="1">Now Playing</option>
+            <option value="2">Coming Soon</option>
+        </select>
+        <select>
+            <option value="0">Filter by Age Category</option>
+            <option value="1">Child</option>
+            <option value="2">Adult</option>
+            <option value="2">Senior</option>
+        </select>
+    </div>
+    <form><input type="text" placeholder="Search by title..."></form>
+    <form><input type="text" placeholder="Search by date (MM/DD)..." pattern="[0-9]{2}/[0-9]{2}"></form>
+</div>
+<div id="movielist">
+    <div class="movie">
+        <iframe width="480" height="270" src="https://www.youtube.com/embed/TcMBFSGVi1c"></iframe>
+        <div class="info">
+            <h3>Avengers: Endgame</h3>
+            <p>Showtimes:</p>
+            <ul>
+                <li>10:00 am Friday, February 17th</li>
+                <li>7:00 pm Friday, February 17th</li>
+                <li>10:00 pm Friday, February 17th</li>
+            </ul>
+            <img class=rating th:href="@{./images/pg-13rating.svg}" alt="PG-13: Some material may be inappropriate for children under the age of 13">
+        </div>
+        <button>Book Tickets</button>
+    </div>
+</div>
+
+<script>
     function openPanel() {
         document.getElementById("accountpanel").style.width = "100px";
     }
     function closePanel() {
         document.getElementById("accountpanel").style.width = "0";
     }
-    </script>
+</script>
 </body>
-</html>       
+</html>

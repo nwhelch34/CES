@@ -1,6 +1,11 @@
 package com.example.CES;
 
 
+import jakarta.validation.Valid;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
@@ -17,7 +22,13 @@ public class CESController {
     private UserRepository userRepo;
 
     @Autowired
+    private PaymentCardRepository paymentCardRepo;
+
+    @Autowired
     private AddressRepository addressRepo;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/")
     public String home() {
@@ -31,47 +42,60 @@ public class CESController {
         return model;
     }
 
+    @RequestMapping("/login/forgotpass")
+    public ModelAndView forgotPass(ModelAndView model) {
+        model.setViewName("forgotpw");
+
+        return model;
+    }
+
     @RequestMapping("/register")
     public String register(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
+        model.addAttribute("paymentCard", new PaymentCard());
         model.addAttribute("address", new Address());
         return "Registration";
     }
 
     @PostMapping("/process_register")
-    public String processRegister(User user, Address address) {
-        String passwordToHash = user.getPassword();
-        String generatedPassword = null;
+    public String registration(@Valid @ModelAttribute("user") UserDto userDto,
+                               BindingResult result,
+                               Model model, Address address, PaymentCard paymentCard) {
+        User existingUser = userService.findUserByEmail(userDto.getEmail());
 
-        try
-        {
-            // Create MessageDigest instance for MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
-
-            // Add password bytes to digest
-            md.update(passwordToHash.getBytes());
-
-            // Get the hash's bytes
-            byte[] bytes = md.digest();
-
-            // This bytes[] has bytes in decimal format. Convert it to hexadecimal format
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < bytes.length; i++) {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-
-            // Get complete hashed password in hex format
-            generatedPassword = sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        if (existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()) {
+            result.rejectValue("email", null,
+                    "There is already an account registered with the same email");
         }
 
-        user.setPassword(generatedPassword);
+        if (result.hasErrors()) {
+            model.addAttribute("user", userDto);
+            return "Registration";
+        }
 
-        userRepo.save(user);
         addressRepo.save(address);
+        userDto.setAddress(address);
+        userService.saveUser(userDto);
+        User user = userService.findUserByEmail(userDto.getEmail());
+        paymentCard.setUser(user);
+        paymentCardRepo.save(paymentCard);
+
 
         return "home";
     }
+
+
+    @RequestMapping("/editprofile/{email}")
+    public String showEditProfile(@PathVariable(value="email") String email, Model model) {
+        model.addAttribute("user", userService.findUserByEmail(email));
+        return "editprofile";
+    }
+
+    @PostMapping("/process_editProfile")
+    public String processEditProfile(@ModelAttribute("user") User user) {
+    // Update the user information
+    userService.updateUser(user);
+    return "home";
+}
 
 }
